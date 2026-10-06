@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Knowledge Assistant</title>
+  <style>
+    body { font-family: Arial; max-width: 500px; margin: 40px auto; }
+    #chatbox { border: 1px solid #ccc; height: 300px; overflow-y: auto; padding: 10px; margin-bottom: 10px; }
+    .user { color: blue; margin: 5px 0; }
+    .ai { color: green; margin: 5px 0; }
+    input { width: 75%; padding: 8px; }
+    button { padding: 8px 15px; }
+  </style>
+</head>
+<body>
+  <h2>AI Knowledge Assistant</h2>
+  <div id="chatbox"></div>
+  <input type="text" id="messageInput" placeholder="Type your message...">
+  <button onclick="sendMessage()">Send</button>
+
+  <script>
+    async function sendMessage() {
+      const input = document.getElementById("messageInput");
+      const message = input.value;
+      if (!message) return;
+
+      const chatbox = document.getElementById("chatbox");
+      chatbox.innerHTML += `<div class="user"><b>You:</b> ${message}</div>`;
+      input.value = "";
+
+      const response = await fetch("http://127.0.0.1:8000/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: message })
+      });
+
+      const data = await response.json();
+      chatbox.innerHTML += `<div class="ai"><b>AI:</b> ${data.reply}</div>`;
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+  </script>
+</body>
+</html>
