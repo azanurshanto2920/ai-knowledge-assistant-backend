@@ -2,6 +2,14 @@
 
 A full-stack AI chatbot backend that can answer questions based on uploaded PDF documents, using Retrieval-Augmented Generation (RAG).
 
+## Live Demo
+
+- **Frontend:** [https://ai-knowledge-assistant-frontend-tau.vercel.app](https://ai-knowledge-assistant-frontend-tau.vercel.app)
+- **Backend API docs:** [https://ai-knowledge-assistant-backend-1yuu.onrender.com/docs](https://ai-knowledge-assistant-backend-1yuu.onrender.com/docs)
+- **Frontend repository:** [ai-knowledge-assistant-frontend](https://github.com/azanurshanto2920/ai-knowledge-assistant-frontend)
+
+> Note: The backend runs on a free tier and sleeps after inactivity. The first request may take up to a minute to wake it up. Uploaded PDFs are not stored permanently on the free tier.
+
 ## Features
 
 - **Chat with AI** — powered by Groq API (LLaMA/GPT-OSS models)
@@ -19,6 +27,7 @@ A full-stack AI chatbot backend that can answer questions based on uploaded PDF 
 - **LLM:** Groq API
 - **Auth:** JWT (python-jose) + bcrypt password hashing
 - **Containerization:** Docker
+- **Hosting:** Render (backend + database), Vercel (frontend)
 
 ## API Endpoints
 
@@ -43,7 +52,3 @@ uvicorn main:app --reload
 docker build -t ai-knowledge-assistant .
 docker run -p 8000:8000 --env-file .env ai-knowledge-assistant
 ```
-
-## Frontend
-
-The React frontend for this project is available at: [link পরে যোগ হবে]
